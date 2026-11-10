@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import '../scripts/backup-restore.js';
+const blank=()=>({schema:2,platform:'supabase',settings:[{id:1,data:{restaurant:"Nico's keittiö",gn:'GN'}}],lunches:[],menus:[],recipes:[],dishes:[],history:[]});
+test('Backup converter validates format and escapes SQL text',()=>{const b=blank(),sql=LounaskirjaBackup.toSQL(b);assert.match(sql,/Nico''s/);assert.match(sql,/BEGIN;/);assert.match(sql,/COMMIT;/);assert.doesNotMatch(sql,/DELETE FROM public.profiles/);assert.throws(()=>LounaskirjaBackup.toSQL({...b,schema:1}));assert.throws(()=>LounaskirjaBackup.toSQL({...b,lunches:[{date:"2026-11-10');DROP TABLE profiles;--"}]}));});

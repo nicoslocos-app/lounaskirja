@@ -1,0 +1,3 @@
+-- OPTIONAL test data. No lunch records or fictional statistics.
+INSERT INTO public.dishes(id,name,category) VALUES('00000000-0000-4000-8000-000000000003','TESTI · Linssicurry','vegan') ON CONFLICT DO NOTHING;
+INSERT INTO public.recipes(id,data) VALUES('00000000-0000-4000-8000-000000000003','{"name":"TESTI · Linssicurry","category":"vegan","servings":50,"protein":"Linssit","ingredients":[{"name":"Punaiset linssit","quantity":4,"unit":"kg"},{"name":"Kookosmaito","quantity":5,"unit":"l"}],"instructions":"Esimerkkiresepti testaamiseen. Lisää keittiön oma valmistusohje ennen käyttöä.","notes":"TESTIDATA – ei tuotantoresepti.","verified":false,"diets":[],"allergens":[],"image":""}') ON CONFLICT DO NOTHING;
